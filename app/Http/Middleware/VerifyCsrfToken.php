@@ -13,8 +13,8 @@ class VerifyCsrfToken extends Middleware
      */
     protected $except = [
        'http://localhost/foreignerhandbook_laravel/public/*',
-       'http://localhost/foreignerhandbook_flutter/public/*',
-
+       'http://localhost/JobSearch/public/rest-api*',
+       'http://192.168.60.165/JobSearch/public/rest-api/*',
     ];
 }
 

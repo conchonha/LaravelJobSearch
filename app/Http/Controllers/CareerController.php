@@ -69,7 +69,7 @@ class CareerController extends Controller
     {
         return response()->json([
             'message' => 'Successfully',
-            'statuscode' => '200',
+            'statuscode' => 200,
             'total' => $total,
             'data' => $data,
         ]);
@@ -79,7 +79,7 @@ class CareerController extends Controller
     {
         return response()->json([
             'message' => $message,
-            'statuscode' => '100',
+            'statuscode' => 100,
             'error' => $error
         ]);
     }

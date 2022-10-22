@@ -12,7 +12,7 @@ class UserController extends Controller
 {
     public function getUserByUserName(Request $request){
         $table = user::where("Name",$request["name"])->get();
-        return $this->respondWithJson($table,$table->count());
+        return $this->respondWithJson($table[0],$table->count());
     }
 
     public function findUser(Request $request){
@@ -27,10 +27,11 @@ class UserController extends Controller
     {
     	$validator = Validator::make($request->all(),[
             'uuid' => ['required','max:255'],
-            'name' => ['required','max:50'],
-            'age' => ['required','alpha_num'],
-            'yearOfBirth' => ['required','alpha_num'],
-            'gender' => ['required','boolean']
+            'Name' => ['required','max:50'],
+            'Email' => ['required','max:50'],
+            'Age' => ['required','alpha_num'],
+            'YearOfBirth' => ['required','alpha_num'],
+            'Gender' => ['required','boolean']
         ]);
 
         if ($validator->fails()) {
@@ -40,10 +41,11 @@ class UserController extends Controller
 
          $user = new user();
          $user->uuid = $request->uuid;
-         $user->Name = $request->name;
-         $user->Age = $request->age;
-         $user->YearOfBirth = $request->yearOfBirth;
-         $user->Gender = $request->gender;
+         $user->Name = $request->Name;
+         $user->Email = $request->Email;
+         $user->Age = $request->Age;
+         $user->YearOfBirth = $request->YearOfBirth;
+         $user->Gender = $request->Gender;
          $user->save();
 
          if($user){
@@ -62,7 +64,7 @@ class UserController extends Controller
     {
         return response()->json([
             'message' => 'Successfully',
-            'statuscode' => '200',
+            'statuscode' => 200,
             'total' => $total,
             'data' => $data,
         ]);
@@ -72,7 +74,7 @@ class UserController extends Controller
     {
         return response()->json([
             'message' => $message,
-            'statuscode' => '100',
+            'statuscode' => 100,
             'error' => $error
         ]);
     }
