@@ -36,7 +36,7 @@ class CareerController extends Controller
     }
 
     public function getListJobFromCarreId(Request $request){
-        $table = list_job::where('list_job.CareerId',$request->careerId)->get();
+        $table = list_job::join('career','career.id','list_job.CareerId')->where('list_job.CareerId',$request->careerId)->get();
         return $this->respondWithJson($table,$table->count());
     }
 
@@ -61,7 +61,7 @@ class CareerController extends Controller
     }
 
     public function getListJobFromArea(Request $request){
-        $table = list_job::where('list_job.areaId',$request->areaId)->get();
+        $table = list_job::join('career','career.id','list_job.CareerId')->where('list_job.areaId',$request->areaId)->get();
         return $this->respondWithJson($table,$table->count());
     }
 
