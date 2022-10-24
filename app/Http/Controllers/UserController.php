@@ -29,9 +29,6 @@ class UserController extends Controller
             'uuid' => ['required','max:255'],
             'Name' => ['required','max:50'],
             'Email' => ['required','max:50'],
-            'Age' => ['required','alpha_num'],
-            'YearOfBirth' => ['required','alpha_num'],
-            'Gender' => ['required','boolean']
         ]);
 
         if ($validator->fails()) {

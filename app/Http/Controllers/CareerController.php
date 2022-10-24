@@ -41,22 +41,22 @@ class CareerController extends Controller
     }
 
     public function getListJobFromEnglishLevelId(Request $request){
-        $table = list_job::where('list_job.EnglishLevel',$request->englishLevel)->get();
+        $table = list_job::join('career','career.id','list_job.CareerId')->where('list_job.EnglishLevel',$request->englishLevel)->get();
         return $this->respondWithJson($table,$table->count());
     }
 
     public function getListJobLess10tr(){
-        $table = list_job::where('list_job.BaseSalary','<=',10000000)->get();
+        $table = list_job::join('career','career.id','list_job.CareerId')->where('list_job.BaseSalary','<=',10000000)->get();
         return $this->respondWithJson($table,$table->count());
     }
 
     public function getListJobBetter10tr_20tr(){
-        $table = list_job::where([['list_job.BaseSalary','>=',10000000],['list_job.BaseSalary','<=',20000000]])->get();
+        $table = list_job::join('career','career.id','list_job.CareerId')->where([['list_job.BaseSalary','>=',10000000],['list_job.BaseSalary','<=',20000000]])->get();
         return $this->respondWithJson($table,$table->count());
     }
 
     public function getListJobBigger20tr(){
-        $table = list_job::where('list_job.BaseSalary','>=',20000000)->get();
+        $table = list_job::join('career','career.id','list_job.CareerId')->where('list_job.BaseSalary','>=',20000000)->get();
         return $this->respondWithJson($table,$table->count());
     }
 
@@ -66,7 +66,7 @@ class CareerController extends Controller
     }
 
     public function getListFromSearch(Request $request){
-        $table = list_job::join('career','career.id','list_job.CareerId')->where('list_job.OtherRequirements','like','%'.$request->textSearch.'%')->get();
+        $table = list_job::join('career','career.id','list_job.CareerId')->where('career.Name','like','%'.$request->textSearch.'%')->get();
         return $this->respondWithJson($table,$table->count());
     }
 
