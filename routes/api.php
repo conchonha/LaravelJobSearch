@@ -54,4 +54,6 @@ Route::group(['prefix'=>'Career'],function(){
 	Route::get('getListJobFromEnglishLevelId','CareerController@getListJobFromEnglishLevelId');
 
 	Route::get('getListJobFromArea','CareerController@getListJobFromArea');
+
+	Route::get('getListFromSearch','CareerController@getListFromSearch');
 });

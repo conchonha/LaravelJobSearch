@@ -65,6 +65,11 @@ class CareerController extends Controller
         return $this->respondWithJson($table,$table->count());
     }
 
+    public function getListFromSearch(Request $request){
+        $table = list_job::join('career','career.id','list_job.CareerId')->where('list_job.OtherRequirements','like','%'.$request->textSearch.'%')->get();
+        return $this->respondWithJson($table,$table->count());
+    }
+
     public function respondWithJson($data,$total)
     {
         return response()->json([

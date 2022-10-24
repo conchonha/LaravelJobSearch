@@ -14,7 +14,7 @@ class VerifyCsrfToken extends Middleware
     protected $except = [
        'http://localhost/foreignerhandbook_laravel/public/*',
        'http://localhost/JobSearch/public/rest-api*',
-       'http://192.168.60.165/JobSearch/public/rest-api/*',
+       'http://192.168.179.165/JobSearch/public/rest-api/*',
     ];
 }
 
